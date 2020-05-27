@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Edit Item</title>
+</head>
+<body>
+	<div align="center">
+		<h1>Edit Item</h1>
+		<br />
+		<form action="#" th:action="@{/save}" th:object="${item}"
+			method="post">
+
+			<table border="0" cellpadding="10">
+				<tr>				
+					<td>Item ID:</td>
+					<td>
+						<input type="number" th:field="*{itemID}" readonly="readonly" />
+					</td>
+				</tr>			
+				<tr>				
+					<td>Description:</td>
+					<td>
+						<input type="text" th:field="*{description}" />
+					</td>
+				</tr>
+				<tr>
+					<td>State:</td>
+					<td><input type="checkbox" id="myCheck" th:field="*{state}" onclick="changeState()">
+                                        <!--button onclick="check()" type="button">Activate item</button>
+                                        <button onclick="uncheck()"type="button">Deactivate item</button-->
+                                        <p id="stateValue">Item is active</p></td>
+                                        </td>
+				</tr>
+				<tr>
+					<td>Price reduction:</td>
+					<td><input type="number" th:field="*{priceID}" /></td>
+				</tr>
+				<tr>
+					<td>Supplier:</td>
+					<td><input type="number" th:field="*{supplierID}" /></td>
+				</tr>		
+                                <tr>
+					<td>User ID</td>
+					<td><input type="text" th:field="*{userID}" /></td>
+				</tr>	
+                                <tr>
+					<td>Created</td>
+					<td><input type="text" th:field="*{created}" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit">Save</button> </td>
+				</tr>
+			</table>
+		</form>
+	</div>
+    <script>
+        //document.getElementById("myCheck").checked = true;
+        /*function check() {
+          document.getElementById("myCheck").checked = true;
+          item[`state`] = true;
+        }
+
+        function uncheck() {
+          document.getElementById("myCheck").checked = false;
+          item[`state`] = false;
+        }*/
+        console.log(item[`state`]);
+        
+        function itemCheck() {
+           /*console.log("hola");
+           var d = document.getElementById("myCheck").value;
+           if (d == true) {
+               document.getElementById("stateValue").innerHTML = "Item is now activated"; 
+           } else {
+               document.getElementById("stateValue").innerHTML = "Item is now deactivated";
+           }*/
+           document.getElementById("form").submit();
+        }
+    /*
+        document.addEventListener("click", function(){
+            document.getElementById("stateValue").innerHTML = "Item is now activated";
+        }); *//*
+        function realState() {
+            if (item[`state`] == true) {
+                document.getElementById("stateValue").innerHTML = "Item is active";
+            } else {
+                document.getElementById("stateValue").innerHTML = "Item is not active";
+            }
+        }*/
+        function changeState() {
+            if (document.getElementById("myCheck").checked) {
+                document.getElementById("stateValue").innerHTML = "Item is active";
+                document.getElementById("myCheck").value = true;
+                item[`state`] = true;
+            } else {
+                document.getElementById("stateValue").innerHTML = "Item is not active";
+                document.getElementById("myCheck").value = false;
+                item[`state`] = false;
+            }
+        }
+    </script>
+</body>
+</html>

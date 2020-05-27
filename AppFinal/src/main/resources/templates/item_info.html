@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Item Info</title>
+</head>
+<body>
+	<div align="center">
+		<h1>Item Info</h1>
+		<br />
+		<form action="#" th:action="@{/dblist}" th:object="${item}"
+			method="get">
+
+			<table border="0" cellpadding="10">
+				<tr>				
+					<td>Item ID:</td>
+					<td>
+                                            <input type="number" th:field="*{itemID}" readonly="readonly" />
+					</td>
+				</tr>			
+				<tr>				
+					<td>Description:</td>
+					<td>
+                                            <input type="text" th:field="*{description}" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+                                        <td>State:</td>
+                                        <td>
+                                            <input type="text" th:field="*{state}" readonly="readonly" id="stateValue"/>
+                                        </td>
+				</tr>
+				<tr>
+					<td>Price reduction:</td>
+					<td><input type="number" th:field="*{priceID}" readonly="readonly"/></td>
+				</tr>
+				<tr>
+					<td>Supplier:</td>
+					<td><input type="number" th:field="*{supplierID}" readonly="readonly"/></td>
+				</tr>		
+                                <tr>
+					<td>User ID</td>
+					<td><input type="text" th:field="*{userID}" readonly="readonly"/></td>
+				</tr>	
+                                <tr>
+					<td>Created</td>
+					<td><input type="text" th:field="*{created}" readonly="readonly"/></td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit">Volver</button> </td>
+				</tr>
+			</table>
+		</form>
+	</div> 
+    <script>
+        var sValue = document.getElementById("stateValue").innerHTML = "Active";
+        if (sValue === "true") {
+            document.getElementById("stateValue").value = "Active";
+        } else {
+            document.getElementById("stateValue").value = "Not active";
+        }
+    </script>
+</body>
+</html>

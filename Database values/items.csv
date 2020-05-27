@@ -1,0 +1,5 @@
+itemID,priceID,supplierID,userID,description,created,state
+1,1,1,1,"Prueba n","2020-03-30 12:46:32",0
+2,1,1,1,"prueba n2","2020-03-30 12:47:23",1
+5,1,1,1,prueban3,"2020-03-30 19:27:48",1
+12,1,1,4,asdasd,"2020-05-27 10:19:05",1

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Product Manager</title>
+</head>
+<body>
+<div align="center">
+    <h1>Product List</h1>
+    <a href="new">Create New Item</a>
+    <br/><br/>
+    <table border="1" cellpadding="10" id="tableF">
+        <thead>
+            <tr>
+                <th>ItemID</th>
+                <th>Price reduction</th>
+                <th>Supplier</th>
+                <th>User</th>
+                <th>Description</th>
+                <th>State
+                    <div class="options">
+                        Filter:
+                        <select id="selectField">
+                            <option value="All" selected="All">All</option>
+                            <option value="Active">Active</option>
+                            <option value="Not Active">Not Active</option>
+                        </select>
+                    </div>
+                </th>
+                <th>Creation date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${listItems}">
+                <td th:text="${item.itemID}">ItemID</td>
+                <td th:text="${item.priceID}">Price reduction</td>
+                <td th:text="${item.supplierID}">Supplier</td>
+                <td th:text="${item.userID}">User</td>
+                <td th:text="${item.description}">Description</td>
+                <td th:text="${item.state}" id="stateValue">State</td>
+                <td th:text="${item.created}">Creation date</td>
+                <td>
+                    <a th:href="@{'/edit/' + ${item.itemID}}">Edit</a>
+                </td>
+                <td>
+                    <a th:href="@{'/info/' + ${item.itemID}}">Info</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> 
+    <script>
+        /*
+        $(document).ready(function() {
+            function addRemoveClass(theRows) {
+                theRows.removeClass("odd even");
+                theRows.filter(":odd").addClass("odd");
+                theRows.filter(":even").addClass("even");
+            }
+            
+            var rows = $("table#tableF tr:not(:first-child)");
+            
+            addRemoveClass(rows);
+        });
+        
+        $("#selectField").on("change", function(){
+            var selected = this.value;
+            if (selected != "All") {
+                rows.filter("[position="+selected+"]").show();
+                rows.not("[position="+selected+"]").hide();
+                var visibleRows = rows.filter("[position="+selected+"]");
+                addRemoveClass(visibleRows);
+            } else {
+                rows.show();
+                addRemoveClass(rows);
+            }
+        });
+    
+        function filterState() {
+            var select, filter, table, tr, td, i, txtValue;
+            select = document.getElementById("selectField");
+            
+            filter = select.value();
+            table = document.getElementById("tableF");
+            tr = table.getElementByTagName("tr");
+            
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }                    
+                }
+            }
+        }
+        $(document).ready(function($){
+            $('table').hide();
+            $('selectField').change(function(){
+                $('table').show();
+                var selection = $(this).val();
+                var dataset = $('#tableF tbody').find('tr');
+                dataset.show();
+                dataset.filter(function(index, item){
+                    return $(item).find('td:first-child').text().indexOf(selection) === -1;
+                }).hide();
+            })
+        })
+        var sValue = document.getElementById("stateValue").value;
+        console.log(document.getElementById("stateValue"));
+        if (sValue === "true") {
+            document.getElementById("stateValue").value = "Active";
+        } else {
+            document.getElementById("stateValue").value = "Not active";
+        }*/
+    </script>
+</body>
+</html>

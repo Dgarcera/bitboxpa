@@ -1,0 +1,65 @@
+CREATE TABLE `items` (
+  `itemID` int(11) NOT NULL,
+  `priceID` int(11) DEFAULT 0,
+  `supplierID` int(11) DEFAULT 0,
+  `userID` int(11) NOT NULL DEFAULT 1,
+  `description` varchar(200) NOT NULL,
+  `created` datetime NOT NULL DEFAULT current_timestamp(),
+  `state` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`itemID`),
+  KEY `priceID_idx` (`priceID`),
+  KEY `supplierID_idx` (`supplierID`),
+  KEY `userID_idx` (`userID`),
+  CONSTRAINT `priceID` FOREIGN KEY (`priceID`) REFERENCES `price reduction` (`priceID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `supplierID` FOREIGN KEY (`supplierID`) REFERENCES `supplier` (`supplierID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `userID` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+CREATE TABLE `authority_user` (
+  `user_id` int(11) NOT NULL,
+  `authority_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`authority_id`),
+  KEY `FK1b6h9rc8e4iivyrdj5wpg1p1n` (`authority_id`),
+  CONSTRAINT `FK1b6h9rc8e4iivyrdj5wpg1p1n` FOREIGN KEY (`authority_id`) REFERENCES `authority` (`id`),
+  CONSTRAINT `FKhmmb7s813eprjwpks6ujljo3g` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+CREATE TABLE `items` (
+  `itemID` int(11) NOT NULL,
+  `priceID` int(11) DEFAULT 0,
+  `supplierID` int(11) DEFAULT 0,
+  `userID` int(11) NOT NULL DEFAULT 1,
+  `description` varchar(200) NOT NULL,
+  `created` datetime NOT NULL DEFAULT current_timestamp(),
+  `state` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`itemID`),
+  KEY `priceID_idx` (`priceID`),
+  KEY `supplierID_idx` (`supplierID`),
+  KEY `userID_idx` (`userID`),
+  CONSTRAINT `priceID` FOREIGN KEY (`priceID`) REFERENCES `price reduction` (`priceID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `supplierID` FOREIGN KEY (`supplierID`) REFERENCES `supplier` (`supplierID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `userID` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+CREATE TABLE `price reduction` (
+  `priceID` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` decimal(20,2) DEFAULT NULL,
+  `start` datetime NOT NULL,
+  `end` datetime NOT NULL,
+  PRIMARY KEY (`priceID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4
+
+CREATE TABLE `supplier` (
+  `supplierID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  `country` varchar(80) NOT NULL,
+  PRIMARY KEY (`supplierID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(80) NOT NULL,
+  `password` varchar(80) NOT NULL,
+  `enabled` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4
